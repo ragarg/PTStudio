@@ -1,0 +1,21 @@
+.vector-3-field {
+ display: grid;
+ grid-template-columns: repeat(4, minmax(0, 1fr));
+ gap: 6px;
+}
+
+.vector-3-field label {
+ display: flex;
+ min-width: 0;
+ flex-direction: column;
+ gap: 3px;
+}
+
+.vector-3-field label span {
+ color: #778399;
+ font-size: 10px;
+}
+
+.vector-3-field input {
+ width: 100%;
+}
