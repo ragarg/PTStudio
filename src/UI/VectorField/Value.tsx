@@ -1,3 +1,5 @@
+import styles from './Value.module.css';
+
 interface ValueProps {
     label: string;
     value: number,
@@ -13,17 +15,19 @@ export default function Value({
         onValueChange?.(value);
     }
     return (
-        <label aria-label={`label`}>
-            <span aria-hidden="true">{label}</span>
-            <input
-                type="number"
-                step="0.001"
-                value={value}
-                onChange={(event) => {
-                    const value = event.currentTarget.valueAsNumber;
-                    if (Number.isFinite(value)) valueChange(value);
-                }}
-            />
-        </label>
+        <div className={styles.value}>
+            <label aria-label={`label`}>
+                <span aria-hidden="true">{label}</span>
+                <input
+                    type="number"
+                    step="0.001"
+                    value={value}
+                    onChange={(event) => {
+                        const value = event.currentTarget.valueAsNumber;
+                        if (Number.isFinite(value)) valueChange(value);
+                    }}
+                />
+            </label>
+        </div>
     );
 }

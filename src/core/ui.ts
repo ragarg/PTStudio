@@ -1,0 +1,1 @@
+export type SettingsTab = 'render' | 'camera' | 'transform' | 'material';

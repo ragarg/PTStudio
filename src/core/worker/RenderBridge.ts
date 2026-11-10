@@ -1,5 +1,5 @@
 import type { InputEvent, ResizeEvent } from '@tsraycaster/pt-engine';
-import type { RenderMode, WorkerRequest, WorkerResponse } from './protocol';
+import type { MaterialParams, NodeId, RenderMode, WorkerRequest, WorkerResponse } from './protocol';
 import { isWorkerResponse } from './protocol';
 
 export type RenderBridgeEvent =
@@ -31,24 +31,8 @@ export default class RenderBridge {
     this.send({ type: 'init', width, height, canvas }, [canvas]);
   }
 
-  public render(): void {
-    this.send({ type: 'render' });
-  }
-
   public setMode(mode: RenderMode): void {
     this.send({ type: 'setMode', mode });
-  }
-
-  public updateCamera(camera?: { position?: Float32Array; direction?: Float32Array }): void {
-    this.send({ type: 'camera', camera });
-  }
-
-  public getObjects(): void {
-    this.send({ type: 'getObjects' });
-  }
-
-  public getObject(id: number): void {
-    this.send({ type: 'getObject', id });
   }
 
   public sendInput(event: InputEvent): void {
@@ -59,16 +43,28 @@ export default class RenderBridge {
     this.send({ type: 'Event', event });
   }
 
-  public setPosition(id: number, position: Float32Array): void {
+  public setPosition(id: NodeId, position: Float32Array): void {
     this.send({ type: 'setPosition', id, position });
   }
 
-  public setScale(id: number, scale: Float32Array): void {
+  public setScale(id: NodeId, scale: Float32Array): void {
     this.send({ type: 'setScale', id, scale });
   }
 
-  public setMaterial(id: number, materialIndex: number): void {
-    this.send({ type: 'setMaterial', id, materialIndex });
+  public setMaterial(id: NodeId, materialId: NodeId): void {
+    this.send({ type: 'setMaterial', id, materialId });
+  }
+
+  public setMaterialParams(id: NodeId, materialId: NodeId, params: MaterialParams): void {
+    this.send({ type: 'setMaterialParams', id, materialId, params });
+  }
+
+  public getMateriaParams(id: NodeId): void {
+    this.send({ type: 'getMateriaParams', id });
+  }
+
+  public getTransform(id: NodeId): void {
+    this.send({ type: 'getTransform', id });
   }
 
   public terminate(): void {

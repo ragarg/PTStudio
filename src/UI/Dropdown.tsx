@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import styles from './Dropdown.module.css';
 
 export interface Option {
-  value: number;
+  value: string;
   label: string;
 }
 
 interface DropdownProps {
-  value: number | null;
-  onChange: (value: number) => void;
+  value: string | null;
+  onChange: (value: string | null) => void;
   options: Option[];
   placeholder?: string;
 }
@@ -40,25 +41,25 @@ export default function Dropdown({ value, onChange, options, placeholder = 'Вы
   }, [open]);
 
   return (
-    <div className="dropdown" ref={ref}>
+    <div className={styles.dropdown} ref={ref}>
       <button
         type="button"
-        className="dropdown__button"
+        className={styles.button}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
         {current?.label ?? placeholder}
-        <span className={`dropdown__arrow ${open ? 'is-open' : ''}`}>▾</span>
+        <span className={`${styles.arrow}${open ? ` ${styles.isOpen}` : ''}`} aria-hidden="true">▾</span>
       </button>
 
       {open && (
-        <ul className="dropdown__menu" role="listbox">
+        <ul className={styles.menu} role="listbox">
           {options.map((opt) => (
             <li
               key={opt.value}
               role="option"
               aria-selected={opt.value === value}
-              className={`dropdown__item ${opt.value === value ? 'is-active' : ''}`}
+              className={`${styles.item}${opt.value === value ? ` ${styles.active}` : ''}`}
               onClick={() => {
                 onChange(opt.value);
                 setOpen(false);

@@ -1,0 +1,109 @@
+.outliner {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-rows: 42px minmax(0, 1fr) 30px;
+  border-right: 1px solid var(--border);
+  background: var(--panel-bg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border-soft);
+  background: #171e27;
+  color: #b8c2ce;
+}
+
+.header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.objectTree {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 7px 5px;
+}
+
+.objectRow {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 32px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 9px 0 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #c9d0da;
+  text-align: left;
+  cursor: pointer;
+}
+
+.objectRow:hover {
+  background: var(--panel-hover);
+}
+
+.objectRow:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.selected {
+  border-color: #354f6d;
+  background: var(--panel-active);
+  color: #fff;
+}
+
+.selected::before {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: -1px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  content: "";
+}
+
+.objectIcon {
+  flex: 0 0 auto;
+  color: #a7b5c5;
+  stroke-width: 1.8;
+}
+
+.selected .objectIcon {
+  color: #d3e8ff;
+}
+
+.objectName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emptyState {
+  margin: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid var(--border-soft);
+  background: #151b23;
+  color: var(--text-muted);
+  font-size: 10px;
+}

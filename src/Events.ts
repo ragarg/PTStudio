@@ -1,5 +1,5 @@
 import { useEffect, type RefObject } from 'react';
-import type RenderBridge from './worker/RenderBridge';
+import type RenderBridge from './core/worker/RenderBridge';
 
 const CAMERA_KEYS = new Set([
   'KeyW', 'KeyA', 'KeyS', 'KeyD',
@@ -81,6 +81,7 @@ export default function useEventRetranslation(
       canvas.removeEventListener('pointermove', pointerMove);
       canvas.removeEventListener('pointerup', pointerUp);
       canvas.removeEventListener('pointercancel', pointerUp);
+      resizeObserver.disconnect();
     };
   }, [bridgeRef, canvasRef, ready]);
 }

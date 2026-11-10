@@ -1,26 +1,22 @@
-import type { ObjectData } from "@tsraycaster/pt-engine";
 import Dropdown, { type Option } from "./Dropdown";
+import { useEditorStore } from "../stores/editorStore";
 
-interface ObjectSelectorProps {
-    objects: ObjectData[],
-    onChange: (value: number) => void;
-    // defaultValue: number | null
-}
+export default function ObjectSelector() {
 
-export default function ObjectSelector({objects, onChange}: ObjectSelectorProps) {
+    const objects = useEditorStore((s) => s.objects);
+    const selectedId = useEditorStore((s) => s.selectedId);
+    const select = useEditorStore((s) => s.select);
 
     const options: Option[] = [];
 
-    objects.forEach((object, i) => {
+    objects.forEach((object) => {
         options.push({
-            value: i,
+            value: object.UUID,
             label: object.name
         })
     });
 
     return (
-        <div>
-            <Dropdown value={null} onChange={onChange} options={options} />
-        </div>
+        <Dropdown value={selectedId} onChange={select} options={options} />
     );
 }

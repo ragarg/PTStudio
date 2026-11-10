@@ -1,0 +1,10 @@
+.value input {
+ width: 100%;
+ min-width: 0;
+ padding: 5px 6px;
+ border: 1px solid var(--field-border);
+ border-radius: var(--control-radius);
+ background: var(--field-bg);
+ color: var(--text);
+ font: inherit;
+}

@@ -1,0 +1,143 @@
+.menu {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: 58px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--panel-bg);
+}
+
+.tabs {
+  display: grid;
+  grid-auto-rows: 40px;
+  align-content: start;
+  justify-items: center;
+  gap: 7px;
+  overflow-y: auto;
+  padding: 8px 7px;
+  border-right: 1px solid var(--border);
+  background: #11171e;
+}
+
+.tab {
+  position: relative;
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--control-radius);
+  background: transparent;
+  color: #9ca6b3;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.tab svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.tab:hover {
+  background: var(--panel-hover);
+  color: var(--text);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.active,
+.active:hover {
+  border-color: #3a5a7c;
+  background: #234263;
+  color: #c6e1ff;
+}
+
+.active::before {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: -6px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  content: "";
+}
+
+.content {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-rows: 42px minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #252f3b;
+  background: #171e27;
+}
+
+.header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settingsSection {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px;
+  overscroll-behavior: contain;
+  scrollbar-color: #505762 #11171e;
+  scrollbar-width: thin;
+}
+
+.settingsSection::-webkit-scrollbar,
+.tabs::-webkit-scrollbar {
+  width: 8px;
+}
+
+.settingsSection::-webkit-scrollbar-track,
+.tabs::-webkit-scrollbar-track {
+  background: #11171e;
+}
+
+.settingsSection::-webkit-scrollbar-thumb,
+.tabs::-webkit-scrollbar-thumb {
+  border: 2px solid #11171e;
+  border-radius: 4px;
+  background: #505762;
+}
+
+.settingsSection::-webkit-scrollbar-thumb:hover,
+.tabs::-webkit-scrollbar-thumb:hover {
+  background: #697382;
+}
+
+@media (max-width: 1100px) {
+  .menu {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .tabs {
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+
+  .tab {
+    width: 36px;
+  }
+}

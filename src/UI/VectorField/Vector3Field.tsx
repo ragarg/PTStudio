@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import Value from "./Value";
-import './VectorField.css';
+import styles from './VectorField.module.css';
 
 export interface Vector3FieldProps {
     vec: Float32Array,
@@ -24,7 +24,7 @@ export default function Vector3Field({
         onValueChange?.(2, value);
     }, [onValueChange]);
     return (
-        <div className="vector-3-field">
+        <div className={styles.vector3Field}>
             <Value label={"x"} value={x} onValueChange={XChange}></Value>
             <Value label={"y"} value={y} onValueChange={YChange}></Value>
             <Value label={"z"} value={z} onValueChange={ZChange}></Value>
